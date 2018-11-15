@@ -1,6 +1,7 @@
 // core
 const { createServer } = require("http")
 const { parse } = require("url")
+const { readdir } = require("fs")
 
 // npm
 const next = require("next")
@@ -11,21 +12,58 @@ const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
   createServer((req, res) => {
-    // Be sure to pass `true` as the second argument to `url.parse`.
-    // This tells it to parse the query portion of the URL.
     const parsedUrl = parse(req.url, true)
-    // const { pathname, query } = parsedUrl
-    // console.error('parsedUrl:', parsedUrl)
+    const { pathname } = parsedUrl
 
-    /*
-    if (pathname === '/a') {
-      app.render(req, res, '/b', query)
-    } else if (pathname === '/b') {
-      app.render(req, res, '/a', query)
-    } else {
-      handle(req, res, parsedUrl)
+    // console.log('pathname:', pathname, Object.keys(req), Object.keys(res))
+
+    if (!pathname.indexOf("/data/")) {
+      try {
+        const json = require(`./${pathname}`)
+        res.end(JSON.stringify(json), "utf-8")
+        return
+      } catch (e) {
+        res.end(e.toString(), "utf-8")
+        return
+      }
     }
-    */
+
+    if (pathname === "/page-3.json") {
+      // console.log('query:', query)
+      // app.render(req, res, '/page-3data', query)
+
+      readdir("data", (err, files) => {
+        // console.log('FILES:', files)
+        edges = files
+          .filter((f) => f.indexOf(".json") !== -1)
+          .map((f) => {
+            const publicURL = `/data/${f}`
+            const [name] = f.split(".")
+            return {
+              node: {
+                absolutePath: `/home/millette/al66/trouser2${publicURL}`,
+                publicURL,
+                name,
+                base: f,
+              },
+            }
+          })
+        const data = {
+          allFile: {
+            group: [
+              {
+                fieldValue: "",
+                totalCount: 2,
+                edges,
+              },
+            ],
+          },
+        }
+
+        res.end(JSON.stringify({ data }, null, "  "), "utf-8")
+      })
+      return
+    }
     handle(req, res, parsedUrl)
   }).listen(3000, (err) => {
     if (err) throw err
