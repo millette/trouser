@@ -1,15 +1,29 @@
 // npm
+import { withRouter } from "next/router"
 import Link from "next/link"
+import fetch from "isomorphic-unfetch"
 
 // self
 import Files from "../components/files"
 
-export default class P3 extends React.Component {
+class P3 extends React.Component {
   constructor(props) {
     super(props)
+    // console.log('CTOR', props)
     this.group =
       (props.data && props.data.allFile && props.data.allFile.group) || []
     this.state = {}
+  }
+
+  static async getInitialProps(xxx) {
+    // console.log('XXX:', Object.keys(xxx))
+    /*
+    const { req } = xxx
+    const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
+    return { userAgent }
+    */
+    const res = await fetch("http://localhost:3000/page-3.json")
+    return res.json()
   }
 
   onClick(dir, files) {
@@ -70,3 +84,5 @@ export const query = graphql`
   }
 `
 */
+
+export default withRouter(P3)
