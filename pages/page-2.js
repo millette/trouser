@@ -1,14 +1,14 @@
 import { withRouter } from "next/router"
 import Link from "next/link"
 
-class Page extends React.Component {
+class Page2 extends React.Component {
   render() {
     return (
       <div>
         <p>
           Welcome to next.js!
-          <Link href="/page-2">
-            <a>page 2</a>
+          <Link href="/">
+            <a>home</a>
           </Link>
         </p>
         <pre>{JSON.stringify(this.props.router, null, "  ")}</pre>
@@ -17,4 +17,4 @@ class Page extends React.Component {
   }
 }
 
-export default withRouter(Page)
+export default withRouter(Page2)
