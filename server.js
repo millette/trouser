@@ -15,8 +15,6 @@ app.prepare().then(() => {
     const parsedUrl = parse(req.url, true)
     const { pathname } = parsedUrl
 
-    // console.log('pathname:', pathname, Object.keys(req), Object.keys(res))
-
     if (!pathname.indexOf("/data/")) {
       try {
         const json = require(`./${pathname}`)
@@ -29,11 +27,7 @@ app.prepare().then(() => {
     }
 
     if (pathname === "/page-3.json") {
-      // console.log('query:', query)
-      // app.render(req, res, '/page-3data', query)
-
       readdir("data", (err, files) => {
-        // console.log('FILES:', files)
         edges = files
           .filter((f) => f.indexOf(".json") !== -1)
           .map((f) => {

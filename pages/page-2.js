@@ -1,8 +1,7 @@
 // npm
-import { withRouter } from "next/router"
 import Link from "next/link"
 
-class Page2 extends React.Component {
+export default class Page2 extends React.Component {
   render() {
     return (
       <div>
@@ -15,10 +14,7 @@ class Page2 extends React.Component {
             <a>page-3</a>
           </Link>
         </p>
-        <pre>{JSON.stringify(this.props.router, null, "  ")}</pre>
       </div>
     )
   }
 }
-
-export default withRouter(Page2)

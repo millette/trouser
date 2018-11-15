@@ -6,22 +6,16 @@ import fetch from "isomorphic-unfetch"
 // self
 import Files from "../components/files"
 
-class P3 extends React.Component {
+export default class P3 extends React.Component {
   constructor(props) {
     super(props)
-    // console.log('CTOR', props)
     this.group =
       (props.data && props.data.allFile && props.data.allFile.group) || []
     this.state = {}
   }
 
   static async getInitialProps(xxx) {
-    // console.log('XXX:', Object.keys(xxx))
-    /*
-    const { req } = xxx
-    const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
-    return { userAgent }
-    */
+    console.log("browser", !xxx.req)
     const res = await fetch("http://localhost:3000/page-3.json")
     return res.json()
   }
@@ -61,28 +55,3 @@ class P3 extends React.Component {
     )
   }
 }
-
-/*
-export const query = graphql`
-  query {
-    allFile(
-      filter: { sourceInstanceName: { eq: "le-f2" }, extension: { eq: "json" } }
-    ) {
-      group(field: relativeDirectory) {
-        fieldValue
-        totalCount
-        edges {
-          node {
-            absolutePath
-            publicURL
-            name
-            base
-          }
-        }
-      }
-    }
-  }
-`
-*/
-
-export default withRouter(P3)
