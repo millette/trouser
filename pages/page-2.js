@@ -6,8 +6,8 @@ class Page2 extends React.Component {
   render() {
     return (
       <div>
+        <h1>Welcome to page 2</h1>
         <p>
-          Welcome to next.js!{" "}
           <Link prefetch href="/">
             <a>home</a>
           </Link>{" "}

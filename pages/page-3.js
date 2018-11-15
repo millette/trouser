@@ -22,7 +22,7 @@ export default class P3 extends React.Component {
         <h1>Welcome to page 3</h1>
         <p>
           <Link prefetch href="/">
-            <a>Go back to the homepage</a>
+            <a>home</a>
           </Link>{" "}
           <Link prefetch href="/page-2">
             <a>Go to page 2</a>
