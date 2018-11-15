@@ -15,7 +15,8 @@ export default class P3 extends React.Component {
   }
 
   static async getInitialProps(xxx) {
-    console.log("browser", !xxx.req)
+    // console.log("server", Boolean(xxx.req))
+    // FIXME: use relative url and/or local function
     const res = await fetch("http://localhost:3000/page-3.json")
     return res.json()
   }
