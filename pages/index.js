@@ -1,3 +1,4 @@
+// npm
 import { withRouter } from "next/router"
 import Link from "next/link"
 
@@ -6,8 +7,8 @@ class Page extends React.Component {
     return (
       <div>
         <p>
-          Welcome to next.js!
-          <Link href="/page-2">
+          Welcome to next.js!{" "}
+          <Link prefetch href="/page-2">
             <a>page 2</a>
           </Link>
         </p>
