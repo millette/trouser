@@ -16,28 +16,22 @@ const resort = (keys, primary) => {
   return k2
 }
 
-const Header = ({ keys, primary }) => {
+const Header = ({ onClick, keys, primary }) => {
   const k2 = resort(keys, primary)
   return (
     <thead>
       <tr>
         {k2.map((o, i) => (
-          <th key={`header-key-${i}`}>{o}</th>
+          <th onClick={onClick.bind(this, o)} key={`header-key-${i}`}>
+            {o}
+          </th>
         ))}
       </tr>
     </thead>
   )
 }
 
-/*
-  {Object.keys(o)
-    .sort()
-    .map((k, i2) => (
-      <td key={`cell-key-${i2}`}>{JSON.stringify(o[k])}</td>
-    ))}
-*/
-
-const Row = ({ style, o, i, click, primary = "" }) => {
+const Row = ({ style, o, i, click, primary }) => {
   const k2 = resort(Object.keys(o), primary)
   return (
     <tr style={style} onClick={click}>
@@ -56,6 +50,11 @@ export default class JsonFile extends Component {
     }
     this.clickRow = this.clickRow.bind(this)
     this.submit = this.submit.bind(this)
+    this.clickHeader = this.clickHeader.bind(this)
+  }
+
+  clickHeader(primary) {
+    this.setState({ primary })
   }
 
   submit() {
@@ -89,11 +88,15 @@ export default class JsonFile extends Component {
           Submit
         </button>
         <table>
-          <Header primary="use" keys={Object.keys(json[0])} />
+          <Header
+            onClick={this.clickHeader}
+            primary={this.state.primary}
+            keys={Object.keys(json[0])}
+          />
           <tbody>
             {json.map((o, i) => (
               <Row
-                primary={this.props.primary}
+                primary={this.state.primary}
                 style={{ background: this.state.idx[i] && "yellow" }}
                 click={this.clickRow}
                 i={i}
