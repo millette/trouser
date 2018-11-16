@@ -16,6 +16,7 @@ app.prepare().then(() => {
   createServer(async (req, res) => {
     const parsedUrl = parse(req.url, true)
     const { pathname } = parsedUrl
+    // console.log('pathname:', pathname)
 
     if (!pathname.indexOf("/data/")) {
       try {

@@ -83,6 +83,7 @@ export default class File extends Component {
             )}
           </p>
           <JsonFile
+            primary={this.props.primary}
             submit={this.submit}
             error={this.state.error}
             json={this.state.json}
