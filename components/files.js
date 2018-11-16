@@ -30,7 +30,7 @@ export default class Files extends Component {
               </li>
             ))}
           </ul>
-          <File primary={this.props.primary} {...this.state} />
+          <File {...this.state} />
         </div>
       )
     )

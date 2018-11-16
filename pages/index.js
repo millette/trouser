@@ -42,7 +42,7 @@ export default class P3 extends React.Component {
             </li>
           ))}
         </ul>
-        <Files primary="use" {...this.state} />
+        <Files {...this.state} />
       </div>
     )
   }

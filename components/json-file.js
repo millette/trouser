@@ -89,7 +89,7 @@ export default class JsonFile extends Component {
           Submit
         </button>
         <table>
-          <Header primary={this.props.primary} keys={Object.keys(json[0])} />
+          <Header primary="use" keys={Object.keys(json[0])} />
           <tbody>
             {json.map((o, i) => (
               <Row
