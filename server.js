@@ -16,20 +16,6 @@ app.prepare().then(() => {
   createServer(async (req, res) => {
     const parsedUrl = parse(req.url, true)
     const { pathname } = parsedUrl
-    // console.log('pathname:', pathname)
-    /*
-    if (!pathname.indexOf("/data/")) {
-      try {
-        const json = require(`./${pathname}`)
-        res.end(JSON.stringify(json), "utf-8")
-        return
-      } catch (e) {
-        res.end(e.toString(), "utf-8")
-        return
-      }
-    }
-    */
-
     if (pathname === "/page-3.json") {
       try {
         const data = await yup()
