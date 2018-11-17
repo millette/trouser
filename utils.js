@@ -5,14 +5,14 @@ const { readdir } = require("fs")
 
 const yup = () =>
   new Promise((resolve, reject) => {
-    readdir("data", (err, files) => {
+    readdir("static/data", (err, files) => {
       if (err) {
         return reject(err)
       }
       edges = files
         .filter((f) => f.indexOf(".json") !== -1)
         .map((f) => {
-          const publicURL = `/data/${f}`
+          const publicURL = `/static/data/${f}`
           const [name] = f.split(".")
           return {
             node: {

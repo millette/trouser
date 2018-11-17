@@ -1,0 +1,20 @@
+{
+  "plugins": [
+    {
+      "use": "@gridsome/source-filesystem",
+      "options": {
+        "path": "data/**/*.json",
+        "typeName": "BlogPost",
+        "route": "/blog/:year/:month/:day/:slug"
+      }
+    },
+    {
+      "use": "@gridsome/source-filesystem666",
+      "options": {
+        "path": "data/**/*.json666",
+        "typeName": "BlogPost666",
+        "route": "/blog/:year/:month/:day/:slug"
+      }
+    }
+  ]
+}

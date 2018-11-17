@@ -17,7 +17,7 @@ app.prepare().then(() => {
     const parsedUrl = parse(req.url, true)
     const { pathname } = parsedUrl
     // console.log('pathname:', pathname)
-
+    /*
     if (!pathname.indexOf("/data/")) {
       try {
         const json = require(`./${pathname}`)
@@ -28,10 +28,15 @@ app.prepare().then(() => {
         return
       }
     }
+    */
 
     if (pathname === "/page-3.json") {
-      const data = await yup()
-      res.end(JSON.stringify(data, null, "  "), "utf-8")
+      try {
+        const data = await yup()
+        res.end(JSON.stringify(data, null, "  "), "utf-8")
+      } catch (e) {
+        res.end(e.toString(), "utf-8")
+      }
       return
     }
     handle(req, res, parsedUrl)
