@@ -8,7 +8,7 @@
     "url": "http://robin.millette.info"
   },
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">=10.0.0"
   },
   "scripts": {
     "dev": "node server.js",
@@ -29,7 +29,15 @@
   },
   "now": {
     "public": true,
+    "version": 1,
     "files": [
+      "components",
+      "package.json",
+      "package-lock.json",
+      "pages",
+      "server.js",
+      "static",
+      "utils.js",
       "static/data"
     ]
   },
