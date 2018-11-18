@@ -49,7 +49,8 @@ export default class JsonFile extends Component {
       idx: {},
     }
     this.clickRow = this.clickRow.bind(this)
-    this.submit = this.submit.bind(this)
+    this.submitIndexes = this.submitIndexes.bind(this)
+    this.submitSubset = this.submitSubset.bind(this)
     this.clickHeader = this.clickHeader.bind(this)
   }
 
@@ -57,7 +58,11 @@ export default class JsonFile extends Component {
     this.setState({ primary })
   }
 
-  submit() {
+  submitSubset() {
+    this.props.submit(Object.keys(this.state.idx).map(Number), true)
+  }
+
+  submitIndexes() {
     this.props.submit(Object.keys(this.state.idx).map(Number))
   }
 
@@ -84,8 +89,11 @@ export default class JsonFile extends Component {
     return (
       <div>
         <p>Selected: {len}</p>
-        <button onClick={this.submit} disabled={!len}>
-          Submit
+        <button onClick={this.submitIndexes} disabled={!len}>
+          Submit indexes
+        </button>{" "}
+        <button onClick={this.submitSubset} disabled={!len}>
+          Submit json subset
         </button>
         <table>
           <Header

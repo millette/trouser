@@ -27,12 +27,9 @@ export default class File extends Component {
     this.submit = this.submit.bind(this)
   }
 
-  submit(a) {
-    // this.setState({ a })
-    // console.log(a, this.props, this.state.json)
+  submit(a, subset) {
     const blob = new Blob(
-      // this.state.json
-      [JSON.stringify(a)],
+      [JSON.stringify(subset ? a.map((x) => this.state.json[x]) : a)],
       {
         type: "application/json",
       },
