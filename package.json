@@ -48,8 +48,8 @@
     "react-dom": "^16.6.3"
   },
   "devDependencies": {
-    "husky": "^1.1.4",
-    "lint-staged": "^8.0.5",
-    "prettier": "^1.15.2"
+    "husky": "2.7.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1"
   }
 }
